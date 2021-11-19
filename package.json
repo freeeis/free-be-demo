@@ -1,0 +1,11 @@
+{
+    "name": "free-be-demo",
+    "version": "0.0.1",
+    "description": "The demo module for FREE BE.",
+    "main": "index.js",
+    "author": "zhiquan",
+    "license": "UNLICENSED",
+    "private": false,
+    "repository": "git@github.com:freeeis/free-be-demo.git"
+  }
+  
