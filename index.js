@@ -28,9 +28,10 @@ module.exports = {
     hooks: {
         onLoadRouters: async (app) => {
             // 确保菜单存在
-            if (app.modules['core-modules']) {
+            const coreModules = app.modules['core-modules'];
+            if (coreModules) {
                 if ((await app.models.menu.countDocuments({})) <= 0) {
-                    await app.modules['core-modules'].ensureMenu('后台主菜单');
+                    await coreModules.ensureMenu('后台主菜单');
 
                     await app.models.menu.create({
                         "Category": "后台主菜单",
@@ -172,15 +173,16 @@ module.exports = {
                         }
                     }
                 }
+
+                // init system config
+                await coreModules.setSystemConfig('系统名称', "", null, '基础设置', '', '', {
+                    Type: 'String',
+                    Name: 'Value',
+                    Warning: '',
+                    "Index": 1,
+                    "Label": "系统名称",
+                });
             }
-            // init system config
-            await mdl.setSystemConfig('系统名称', "", null, '基础设置', '', '', {
-                Type: 'String',
-                Name: 'Value',
-                Warning: '',
-                "Index": 1,
-                "Label": "系统名称",
-            });
         },
         onRoutersReady: () => {
         }
