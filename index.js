@@ -31,8 +31,6 @@ module.exports = {
             const coreModules = app.modules['core-modules'];
             if (coreModules) {
                 if ((await app.models.menu.countDocuments({})) <= 0) {
-                    await coreModules.ensureMenu('后台主菜单');
-
                     await app.models.menu.create({
                         "Category": "后台主菜单",
                         "Label": "首页",
